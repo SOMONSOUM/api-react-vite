@@ -31,7 +31,18 @@ app.post("/create", async (req: Request, res: Response) => {
     name: name,
     status: status,
   });
-  return user;
+  return res.json({
+    code: 200,
+    user,
+  });
+});
+
+app.get("/users", async (req: Request, res: Response) => {
+  const users = await User.findAll();
+  return res.json({
+    code: 200,
+    users,
+  });
 });
 
 app
